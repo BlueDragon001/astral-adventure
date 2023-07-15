@@ -1,0 +1,18 @@
+{
+    "name": "ManagerDef",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1069aa08831fb6c4f8b1e55c25318be0",
+        "GUID:8a36a333ed10dfd4f87ece0c785d27a6",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

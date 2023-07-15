@@ -1,0 +1,16 @@
+{
+    "name": "Boss.Assembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1069aa08831fb6c4f8b1e55c25318be0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
