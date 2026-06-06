@@ -25,22 +25,14 @@ public class DataHandler
     {
         // Get the persistent data path based on the platform
         string filePath = string.Empty;
-#if UNITY_EDITOR || UNITY_STANDALONE_WIN
         filePath = Path.Combine(Application.persistentDataPath, "playerPref.json");
-#elif UNITY_ANDROID
-        filePath = Path.Combine(Application.persistentDataPath, "playerPref.json");
-#endif
         return filePath;
     }
 
     public string GetLevelFilepath()
     {
         string filePath = string.Empty;
-#if UNITY_EDITOR || UNITY_STANDALONE_WIN
         filePath = Path.Combine(Application.persistentDataPath, "level.json");
-#elif UNITY_ANDROID
-        filePath = Path.Combine(Application.persistentDataPath, "level.json");
-#endif
         return filePath;
     }
 
@@ -79,10 +71,11 @@ public class DataHandler
         }
     }
 
-    public LevelData LoadLevelData(){
+    public LevelData LoadLevelData()
+    {
         string filePath = GetLevelFilepath();
 
-         if (File.Exists(filePath))
+        if (File.Exists(filePath))
         {
             // Read the JSON data from the file
             string json = File.ReadAllText(filePath);

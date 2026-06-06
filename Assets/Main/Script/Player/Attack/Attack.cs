@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-   
+
     public GameObject fireIncantation;
     public GameObject fireAttackCircle;
 
     public GameObject attackPosition;
 
-   
+
 
     GameObject tempMagic;
 
@@ -24,7 +24,7 @@ public class Attack : MonoBehaviour
 
         float magicVolume = UnityCSharpExtension.InterpolateValue(staticMenuData.masterVolume * staticMenuData.sfxVolume, 0f, 100f * 100f);
 
-        magicSFX.volume = magicVolume/2;
+        magicSFX.volume = magicVolume / 2;
     }
 
 
@@ -39,16 +39,16 @@ public class Attack : MonoBehaviour
         }
     }
 
-    public void EnemyAttack()
+    public void EnemyAttack(Vector3 spellPosition)
     {
         if (tempMagic == null)
         {
-            fireAttack();
+            fireAttack(spellPosition);
             magicSFX.Play();
         }
     }
 
-    void fireAttack()
+    void fireAttack(Vector3 spellPosition)
     {
         playerAnimation.Attack();
 
@@ -64,7 +64,7 @@ public class Attack : MonoBehaviour
         }
         Destroy(tempMagic, 2f);
 
-        GameObject attackCircle = Instantiate(fireAttackCircle, SpellInstLoc(), fireAttackCircle.transform.rotation);
+        GameObject attackCircle = Instantiate(fireAttackCircle, SpellInstLoc(spellPosition), fireAttackCircle.transform.rotation);
         foreach (Transform transform in attackCircle.GetComponentInChildren<Transform>())
         {
             ParticleSystem particleSystem = transform.GetComponent<ParticleSystem>();
@@ -75,10 +75,11 @@ public class Attack : MonoBehaviour
 
     }
 
-    private Vector3 SpellInstLoc()
+    private Vector3 SpellInstLoc(Vector3 spellPosition)
     {
         Vector3 location = Vector3.zero;
-        Vector3 mousePosition = Input.mousePosition;
+        Vector3 mousePosition = spellPosition;
+        Vector3 touchPos = Vector3.zero;
         mousePosition.z = Mathf.Abs(Camera.main.transform.position.z - transform.position.z);
         Vector3 RayOrigin = Camera.main.ScreenToWorldPoint(mousePosition);
         Ray ray = new Ray(RayOrigin, Vector3.down);

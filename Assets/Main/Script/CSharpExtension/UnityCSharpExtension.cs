@@ -31,6 +31,18 @@ public static class UnityCSharpExtension
         return Mathf.Lerp(0f, 1f, normalizedValue);
     }
 
+    public static float InputInterpolate(float currentValue, float minValue, float maxValue)
+    {
+
+        float clampedValue = Mathf.Clamp(currentValue, minValue, maxValue);
+
+
+        float normalizedValue = (clampedValue - minValue) / (maxValue - minValue);
+
+
+        return Mathf.Lerp(-1f, 1f, normalizedValue);
+    }
+
     public static float BicubicInterpolation(float t)
     {
         float a = -0.5f;  // Bicubic interpolation parameter

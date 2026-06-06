@@ -9,6 +9,7 @@ public static class staticString
    public const string animDeactive ="animDeactive";
    public const string RunningSlide = "RunningSlide";
    public const string aniJump = "Jump";
+   public const string aniJump1 = "Jump1";
    public const string playerTag = "Player";
    public const string leverTrigger = "LeverTrigger";
    public const string aniDeath = "Death";

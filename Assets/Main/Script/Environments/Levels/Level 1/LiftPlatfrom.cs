@@ -12,6 +12,7 @@ public class LiftPlatfrom : MonoBehaviour
 
     public GameObject player;
     private InputHandler inputHandler;
+    public float liftSpeed;
     void Start()
     {
         leverTrigger = GetComponent<LeverTrigger>();
@@ -35,10 +36,10 @@ public class LiftPlatfrom : MonoBehaviour
     {
         while (Lift.transform.position != finalPosition.position)
         {
-
+            Debug.Log("Hello World");
             if (inputHandler.isAlive == true)
             {
-                Lift.transform.position = Vector3.MoveTowards(Lift.transform.position, finalPosition.position, Time.deltaTime * 2f);
+                Lift.transform.position = Vector3.MoveTowards(Lift.transform.position, finalPosition.position, Time.deltaTime * liftSpeed);
             }
             yield return null;
         }

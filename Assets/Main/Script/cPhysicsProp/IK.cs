@@ -82,7 +82,7 @@ public class IK : MonoBehaviour
             StartRotationTarget = GetRotationRootSpace(Target);
 
 
-            //init data
+        
             var current = transform;
             CompleteLength = 0;
             for (var i = Bones.Length - 1; i >= 0; i--)
@@ -125,13 +125,9 @@ public class IK : MonoBehaviour
             if (BonesLength.Length != ChainLength)
                 Init();
 
-            //Fabric
+            
 
-            //  root
-            //  (bone0) (bonelen 0) (bone1) (bonelen 1) (bone2)...
-            //   x--------------------x--------------------x---...
-
-            //get position
+            
             for (int i = 0; i < Bones.Length; i++)
                 Positions[i] = GetPositionRootSpace(Bones[i]);
 
@@ -154,17 +150,16 @@ public class IK : MonoBehaviour
 
                 for (int iteration = 0; iteration < Iterations; iteration++)
                 {
-                    //https://www.youtube.com/watch?v=UNoX65PRehA
-                    //back
+                    
                     for (int i = Positions.Length - 1; i > 0; i--)
                     {
                         if (i == Positions.Length - 1)
-                            Positions[i] = targetPosition; //set it to target
+                            Positions[i] = targetPosition; 
                         else
                             Positions[i] = Positions[i + 1] + (Positions[i] - Positions[i + 1]).normalized * BonesLength[i]; //set in line on distance
                     }
 
-                    //forward
+                    
                     for (int i = 1; i < Positions.Length; i++)
                         Positions[i] = Positions[i - 1] + (Positions[i] - Positions[i - 1]).normalized * BonesLength[i - 1];
 
@@ -174,7 +169,7 @@ public class IK : MonoBehaviour
                 }
             }
 
-            //move towards pole
+           
             if (Pole != null)
             {
                 var polePosition = GetPositionRootSpace(Pole);

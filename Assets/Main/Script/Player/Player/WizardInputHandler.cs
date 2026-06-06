@@ -11,11 +11,14 @@ public class WizardInputHandler : MonoBehaviour
     private Vector2 mousePosition;
     PlayerAnimation playerAnimation;
 
+    public GameObject joySticks;
+
 
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimation = GetComponent<PlayerAnimation>();
+        joySticks = GameObject.Find("Inner Circle");
 
 
     }
@@ -23,6 +26,7 @@ public class WizardInputHandler : MonoBehaviour
     void Update()
     {
         var direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+      // direction = new Vector3(JoyStickMovement().x, JoyStickMovement().y, 0);
         SpiritMovement(direction);
 
     }
@@ -33,6 +37,14 @@ public class WizardInputHandler : MonoBehaviour
     void SpiritMovement(Vector3 direction)
     {
         playerMovement.SpiritMV(direction);
+    }
+
+    Vector2 JoyStickMovement()
+    {
+        float xValue = UnityCSharpExtension.InputInterpolate(joySticks.transform.localPosition.x, -50f, 50f);
+        float yValue = UnityCSharpExtension.InputInterpolate(joySticks.transform.localPosition.y, -50f, 50f);
+        Vector2 position = new Vector2(xValue, yValue);
+        return position;
     }
 
     // private void MovementInput()
