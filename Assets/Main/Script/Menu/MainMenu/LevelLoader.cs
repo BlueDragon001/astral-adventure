@@ -38,6 +38,12 @@ public class LevelLoader : MonoBehaviour
             staticMenuData.sfxVolume = volumeData.sfxVolume;
             staticMenuData.musicVolume = volumeData.musicVolume;
         }
+        else
+        {
+            staticMenuData.masterVolume = 50;
+            staticMenuData.sfxVolume = 50;
+            staticMenuData.musicVolume = 50;
+        }
         if (staticLevelData.currentLevel == null)
         {
             staticLevelData.currentLevel = GameObject.Find(staticLevelData.defaultLevel).name;

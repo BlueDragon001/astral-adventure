@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject spirtObject;
     private GameObject spiritClone;
+    public bool insideTrigger = false;
 
     int totalTime = 10;
     int timeElapsed;
@@ -34,15 +35,17 @@ public class PlayerManager : MonoBehaviour
     {
         if (isAlive)
         {
-            if(inputEnabled){
-                wizardAndSpiritHandler(); 
+            if (inputEnabled)
+            {
+                wizardAndSpiritHandler();
             }
         }
         else
         {
             inputHandler.isAlive = false;
             playerAnimation.PlayerDeath(true);
-            if(PlayerDeath != null){
+            if (PlayerDeath != null)
+            {
                 PlayerDeath();
             }
         }
@@ -81,6 +84,7 @@ public class PlayerManager : MonoBehaviour
 
         if (totalTime <= timeElapsed && !inputHandler.isAlive)
         {
+            isAlive = false;
             timeElapsed = 0;
             inputHandler.isAlive = false;
             var wizardMaterial = spirtObject.GetComponentInChildren<Renderer>().sharedMaterial;
@@ -89,8 +93,36 @@ public class PlayerManager : MonoBehaviour
             StartCoroutine(playerAnimation.SpiritTransformation1(true, renderers));
         }
 
-        
 
+
+    }
+
+    public void wizardAndSpiritHandlerClick()
+    {
+        if(insideTrigger) return;
+        if (GameObject.FindGameObjectWithTag(staticString.spiritTag) == null && inputHandler.isAlive)
+        {
+            inputHandler.isAlive = false;
+            playerAnimation.PlayerDeath(true);
+            StartCoroutine(playerAnimation.SpiritTransformation1(false, renderers));
+            spiritClone = Instantiate(spirtObject, gameObject.transform.position, gameObject.transform.rotation);
+            var wizardMaterial = spirtObject.GetComponentInChildren<Renderer>().sharedMaterial;
+            StartCoroutine(playerAnimation.SpiritTransformation2(true, wizardMaterial));
+            StartCoroutine(deathTimer());
+
+        }
+
+        if (canBeAlive && totalTime > timeElapsed && GameObject.FindGameObjectWithTag(staticString.spiritTag) != null)
+        {
+            var wizardMaterial = spirtObject.GetComponentInChildren<Renderer>().sharedMaterial;
+            StartCoroutine(playerAnimation.SpiritTransformation2(false, wizardMaterial));
+            Destroy(spiritClone, 1);
+            StartCoroutine(playerAnimation.SpiritTransformation1(true, renderers));
+            playerAnimation.PlayerDeath(false);
+            inputHandler.isAlive = true;
+            canBeAlive = false;
+
+        }
     }
 
 
@@ -99,7 +131,7 @@ public class PlayerManager : MonoBehaviour
         if (other.CompareTag(staticString.spiritTag))
         {
             canBeAlive = true;
-            
+
         }
     }
 

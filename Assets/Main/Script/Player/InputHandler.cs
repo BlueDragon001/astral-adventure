@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 
@@ -31,6 +32,7 @@ public class InputHandler : MonoBehaviour
     public AudioSource jumpSFX;
 
     public bool isJumping = false;
+    public Transform joySticks;
 
     void Awake()
     {
@@ -47,7 +49,7 @@ public class InputHandler : MonoBehaviour
         if (!transform.CompareTag(staticString.spiritTag))
         {
             float SFXVolume = UnityCSharpExtension.InterpolateValue(staticMenuData.masterVolume * staticMenuData.sfxVolume, 0f, 100f * 100f);
-            walkSFX.volume = SFXVolume/3;
+            walkSFX.volume = SFXVolume / 3;
             jumpSFX.volume = SFXVolume;
         }
 
@@ -60,10 +62,15 @@ public class InputHandler : MonoBehaviour
         if (isAlive)
         {
             var direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+
+           // direction = new Vector3(JoyStickMovement().x, JoyStickMovement().y, 0);
+
             TelekinesisMovement(direction);
             if (direction.magnitude != 0 && !transform.CompareTag(staticString.spiritTag) && !walkSFX.isPlaying) walkSFX.Play();
 
         }
+
+
 
 
 
@@ -76,13 +83,13 @@ public class InputHandler : MonoBehaviour
     {
         playerMovement.TelekineticsMV(direction);
         //  flyableObject.moveFlyable(direction * Time.deltaTime);
-        
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerMovement.Jump();
             jumpSFX.Play();
-            
+
         }
     }
 
@@ -127,13 +134,34 @@ public class InputHandler : MonoBehaviour
         // FlyableObject flyableObjec = GetComponent<FlyableObject>();//Do not fucking touch it
         // ObjecSelector(selectableNo);
         // flyableObjec.moveFlyable(mousePosition);
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
+        Vector2 mousePosition = Input.mousePosition;
 
         if (isAlive)
         {
-            attack.EnemyAttack();
+            attack.EnemyAttack(mousePosition);
 
         }
 
+    }
+
+    public void OnTouch()
+    {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+        Vector2 touchPosition = Input.GetTouch(0).position;
+        if (isAlive)
+        {
+            attack.EnemyAttack(touchPosition);
+        }
+    }
+
+    Vector2 JoyStickMovement()
+    {
+        float xValue = UnityCSharpExtension.InputInterpolate(joySticks.localPosition.x, -50f, 50f);
+        float yValue = UnityCSharpExtension.InputInterpolate(joySticks.localPosition.y, -50f, 50f);
+        Vector2 position = new Vector2(xValue, yValue);
+        return position;
     }
 
 

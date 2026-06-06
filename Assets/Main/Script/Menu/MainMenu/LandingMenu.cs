@@ -6,6 +6,7 @@ public class LandingMenu : MonoBehaviour
 {
     public GameObject settings;
     public GameObject mainMenu;
+   
 
     public void OnClickSettings()
     {

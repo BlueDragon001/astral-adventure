@@ -25,8 +25,26 @@
                 },
                 {
                     "name": "LeftClick",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "deae1437-bffd-40c4-a412-fde512e8b5db",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "JoyStickMovement",
+                    "type": "Value",
+                    "id": "fd0fef0e-9781-4b7c-b451-6248f23972db",
+                    "expectedControlType": "Dpad",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Touch",
+                    "type": "Button",
+                    "id": "43014d29-03bf-49b3-9a1a-0a105e7f7a6a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -62,8 +80,30 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "Press",
                     "processors": "",
-                    "groups": "PC",
+                    "groups": "PC;Phone",
                     "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc05f686-5972-40e1-9356-0df29b16e4a7",
+                    "path": "*/{Hatswitch}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC;Phone",
+                    "action": "JoyStickMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3eb1c088-6e03-4be7-822b-acdca7f0a401",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "Phone;PC",
+                    "action": "Touch",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
