@@ -97,10 +97,28 @@ The wizard uses magical incantations for combat and interaction:
 
 ## Visual Demonstrations
 
+<<<<<<< HEAD
 - **Gameplay Overview**:  
   ![Gameplay 1](assetsGit/GamePlay.gif) ![Gameplay 2](assetsGit/GamePlay2.gif)
 - **IK & Interactions**:  
   ![IK System](assetsGit/IK.gif)
+=======
+### Gameplay & Mechanics
+- **Spirit Transformation & Movement**:  
+  ![Spirit Mode](assetsGit/AstralMode.gif)
+- **Combat & Spells**:  
+  ![Spell Casting](assetsGit/Spell.gif)
+- **IK & Interactions**:  
+  ![IK System](assetsGit/IK.gif)
+- **Puzzle Solving**:  
+  ![Puzzles](assetsGit/Puzzle.gif) ![Puzzle 2](assetsGit/Puzzle 2.gif)
+
+### UI & Menus
+- **Main Menu**:  
+  ![Main Menu](assetsGit/MainMenu.png)
+- **Settings**:  
+  ![Settings](assetsGit/Settings.png)
+>>>>>>> fdcd7942811c5a8c9552de5a45a2a0a7b6f14295
 - **Death Screen**:  
   ![Death](assetsGit/Death.gif)
 
